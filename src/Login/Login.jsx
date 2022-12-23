@@ -54,7 +54,7 @@ const Login = () => {
 
             <div className="flex items-center justify-between">
               <div className="text-sm">
-                <Link to='/forgotpassword' className="font-medium text-indigo-600 hover:text-indigo-500">
+                <Link to='/forgotpassword' className="font-medium text-[#40AA54] hover:text-indigo-500">
                   Forgot your password?
                 </Link>
               </div>
@@ -63,19 +63,19 @@ const Login = () => {
               {/* <p>something is wrong</p> */}
             </div>
             <div>
-              <button
-                type="submit"
-                className="group relative flex w-full justify-center rounded-md border border-transparent bg-[#40AA54]-600 py-2 px-4 text-sm font-medium text-white hover:bg-[#40AA54]-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-              >
-                <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                  <LockClosedIcon className="h-5 w-5 text-[#40AA54]-500 group-hover:text-[#40AA54]-400" aria-hidden="true" />
-                </span>
-                Login
-              </button>
+            <button
+              type="submit"
+              className="group relative flex w-full justify-center rounded-md border border-transparent bg-[#40AA54] py-2 px-4 text-sm font-medium text-white hover:bg-[#40AA54]-700 focus:outline-none focus:ring-2 focus:ring-[#40AA54]-500 focus:ring-offset-2"
+            >
+              <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+                <LockClosedIcon className="h-5 w-5 text-[#40AA54]-500 group-hover:text-[#40AA54]-400" aria-hidden="true" />
+              </span>
+              Login
+            </button>
             </div>
           </form>
           <div className='flex items-center flex-col gap-2'>
-            <Link to='/register'>Don't have an account? <font className='text-blue-500 font-semibold'>register</font></Link>
+            <Link to='/register'>Don't have an account? <font className='text-[#40AA54] font-semibold'>register</font></Link>
             <p className='text-lg font-semibold'>or login with </p>
             <ImGoogle2 className='text-3xl text-gray-500 cursor-pointer'/>
           </div>
