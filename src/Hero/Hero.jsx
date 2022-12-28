@@ -4,7 +4,7 @@ import './Hero.css';
 
 const Hero = () => {
   return (
-    <div className='md:max-w-[1240px] mx-auto bg-[url("https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8Z3JvY2VyeSUyMHNob3BwaW5nfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=1000&q=60")] h-[80vh] md:w-full w-[350px]  bg-cover bg-fixed bg-no-repeat bg-center rounded-xl md:w-auto'>
+    <div className='md:max-w-[1240px] mx-auto bg-[url("https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8Z3JvY2VyeSUyMHNob3BwaW5nfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=1000&q=60")] h-[70vh] md:w-full  bg-cover bg-fixed bg-no-repeat bg-center md:rounded-xl md:w-auto'>
       <div className='flex flex-col gap-1 w-1/2 pt-40 pl-8'>
         <h1 className='text-[#F7F7F7] md:text-4xl font-extrabold text-2xl'>Order your</h1>
          <h1 className='text-[#F7F7F7] md:text-4xl font-extrabold text-2xl'>Daily Groceries</h1>
