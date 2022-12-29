@@ -10,16 +10,16 @@ const Filter = () => {
   let box = document.querySelector('.product-container');
 
   const btnpressprev = () => {
-    let width = box.clientWidth;
-    box.scrollLeft = box.scrollLeft - width;
-    console.log(width)
-}
+      let width = box.clientWidth;
+      box.scrollLeft = box.scrollLeft - width;
+      console.log(width)
+  }
 
-const btnpressnext = () => {
-  let width = box.clientWidth;
-  box.scrollLeft = box.scrollLeft + width;
-  console.log(width)
-}
+  const btnpressnext = () => {
+      let width = box.clientWidth;
+      box.scrollLeft = box.scrollLeft + width;
+      console.log(width)
+  }
   return (
     <div className='max-w-[1240px] mx-auto px-4 m-8 h-[60vh]'>
       <div className='flex justify-between items-center'>
@@ -33,7 +33,7 @@ const btnpressnext = () => {
         </div>
         </div>
       </div>
-      <div className='relative overflow-hidden pt-6 ml-[-7px]'>
+      <div className='relative overflow-hidden pt-6'>
       <div className='product-container'>
         {
           cards.map((card,index)=>{
