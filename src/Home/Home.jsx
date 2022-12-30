@@ -1,5 +1,6 @@
 import React from 'react';
 import Filter from '../Filter/Filter';
+import Footer from '../Footer/Footer';
 import Hero from '../Hero/Hero';
 import Navbar from '../Navbar/Navbar';
 import Products from '../Products/Products';
@@ -12,6 +13,7 @@ const Home = () => {
    <Hero/>
    <Filter/>
    <Products/>
+   <Footer/>
    </>
   )
 }

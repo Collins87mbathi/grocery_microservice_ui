@@ -53,7 +53,7 @@ const Products = () => {
     <div className="max-w-[1640px] m-auto px-4 py-12">
         <div className='flex justify-between items-center'>
             <h3 className='md:text-[20px] font-bold'>Popular Product</h3>
-            <button className='rounded-3xl bg-[#40AA54] text-[#F7F7F7] px-[0.75rem] py-[0.55rem] w-[20%]'>see all</button>
+            <button className='rounded-3xl bg-[#40AA54] text-[#F7F7F7] px-[0.75rem] py-[0.55rem] w-[20%] md:text-[16px] text-[12px]'>see all</button>
         </div>
         <div className='grid grid-cols-2 lg:grid-cols-4 gap-6 pt-4'>
          {
