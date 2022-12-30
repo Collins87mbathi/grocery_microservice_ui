@@ -1,13 +1,14 @@
 import React from 'react'
 import logo from '../Assets/logo2.png'
 import {CiFacebook,CiTwitter,CiInstagram,CiLinkedin} from "react-icons/ci"
+import "./Footer.css";
 
 const Footer = () => {
   return (
-    <div className='max-w-[1640px] p-4 bg-[#16162E] text-[#F7F7F7] flex gap-4 justify-between'>
+    <div className='max-w-[1640px] p-4 bg-[#16162E] text-[#F7F7F7] gap-4  footer-container'>
     <div className='flex flex-col'>
-     <img src={logo} className='h-[80px] w-auto' alt='logo'/>
-     <div className='lg:flex gap-2 md:text-[20px]'>
+     <img src={logo} className='h-[80px] w-auto logo' alt='logo'/>
+     <div className='flex gap-2 text-[20px] footer-icons'>
         <CiFacebook/>
         <CiTwitter/>
         <CiInstagram/>
