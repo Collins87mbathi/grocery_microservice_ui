@@ -4,9 +4,7 @@ import Card from './Card';
 import {cards} from "./cards";
 import "./filter.css";
 
-const Filter = () => { 
-
-
+const Filter = () => {
   let box = document.querySelector('.product-container');
 
     const btnpressprev = () => {
@@ -33,7 +31,7 @@ const Filter = () => {
         </div>
         </div>
       </div>
-      <div className='overflow-hidden pt-6'>
+      <div className='overflow-hidden relative pt-6'>
       <div className='product-container'>
         {
           cards.map((card,index)=>{
