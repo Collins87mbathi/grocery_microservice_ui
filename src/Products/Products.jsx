@@ -6,7 +6,8 @@ import spinach from '../Assets/spino.png';
 import kales from '../Assets/sukuma.png';
 import papaya from '../Assets/papa.png';
 import cabbage from '../Assets/cabo.png';
-
+import { Link } from 'react-router-dom';
+import { LazyMotion, domAnimation, m } from "framer-motion"
 
 const Products = () => {
  const products = [
@@ -53,15 +54,18 @@ const Products = () => {
     <div className="max-w-[1640px] m-auto px-4 py-12">
         <div className='flex justify-between items-center'>
             <h3 className='md:text-[20px] font-bold'>Popular Product</h3>
-            <button className='rounded-3xl bg-[#40AA54] text-[#F7F7F7] px-[0.75rem] py-[0.55rem] w-[20%] md:text-[16px] text-[12px]'>see all</button>
+            <button className='rounded-3xl bg-[#40AA54] text-[#F7F7F7] px-[0.75rem] py-[0.55rem] w-[20%] md:text-[16px] text-[12px]'><Link to='/products'>see all</Link></button>
         </div>
-        <div className='grid grid-cols-2 lg:grid-cols-4 gap-6 pt-4'>
+        <LazyMotion features={domAnimation}>
+        <m.div animate={{ opacity: 1 }} className='grid grid-cols-2 lg:grid-cols-4 gap-6 pt-4'>
          {
           products.map((product,index)=> {
             return <Product key={index} product={product}/>
           })
          }
-        </div>
+        
+        </m.div>
+        </LazyMotion>
     </div>
   )
 }
