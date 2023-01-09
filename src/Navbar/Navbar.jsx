@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import Logo from "../images/logo.png";
 import { Link } from "react-router-dom";
+import {createImageFromInitials} from "../Utils/getInitials";
+import {getRandomColor} from "../Utils/getRandomColor";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { useSelector } from "react-redux";
 // import {FaCartPlus} from 'react-icons/fa';
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
-  const user = useSelector((state) => state.state.user);
-
+  const user = useSelector((state) => state?.user.user);
   const handleNav = () => {
     setNav(!nav);
   };
@@ -36,22 +37,30 @@ const Navbar = () => {
         <li className="p-4 hover:text-[#40AA54] text-[#16162E] active:text-[#40AA54] transition duration-500 focus:text-[#40AA54]">
           About
         </li>
-        <li>
-          <Link
-            to="/register"
-            className="bg-[#40AA54] p-1 rounded-md  hover:bg-[#F7F7F7] border-2  flex gap-4 m-2 transition duration-500 active:text-[#16162E] text-center"
-          >
-            Register
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/login"
-            className="bg-[#40AA54] p-1 flex justify-center rounded-md hover:bg-[#F7F7F7] border-2 transition duration-500  text-[#16162E] active:text-[#16162E]  gap-4 m-2"
-          >
-            Login
-          </Link>
-        </li>
+        {user === null ? (
+          <>
+            <li>
+              <Link
+                to="/register"
+                className="flex justify-center bg-[#40AA54] p-1 rounded-md  hover:bg-[#F7F7F7] border-2  flex gap-4 m-2 transition duration-500 active:text-neutral-500 text-center"
+              >
+                Register
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/login"
+                className="bg-[#40AA54] p-1 flex justify-center rounded-md hover:bg-[#F7F7F7] border-2 transition duration-500  text-neutral-900 active:text-neutral-500  gap-4 m-2"
+              >
+                Login
+              </Link>
+            </li>
+          </>
+        ) : (
+          <li className="text-[18px] font-semibold cursor-pointer flex items-center"><img className="w-[40px] h-[40px] rounded-[50%] object-cover" src={
+            createImageFromInitials(500, user?.fullname , getRandomColor())
+          } alt="img" /></li>
+        )}
       </ul>
       <div onClick={handleNav} className="block md:hidden">
         {nav ? (
@@ -77,7 +86,7 @@ const Navbar = () => {
         <li className="p-4 hover:text-[#40AA54]  text-[#16162E] active:text-[#40AA54] transition duration-500">
           About
         </li>
-        {user ? (
+        {user === null ? (
           <>
             <li>
               <Link
@@ -97,7 +106,9 @@ const Navbar = () => {
             </li>
           </>
         ) : (
-          <li className="text-[20px] font-semibold">{user?.fullname}</li>
+          <li className="text-[18px] font-semibold cursor-pointer flex items-center"><img className="w-[40px] h-[40px] rounded-[50%] object-cover" src={
+            createImageFromInitials(500, user?.fullname , getRandomColor())
+          } alt="img" /></li>
         )}
       </ul>
     </div>

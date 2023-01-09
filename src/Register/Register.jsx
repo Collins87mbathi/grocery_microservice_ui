@@ -24,7 +24,8 @@ const Register = () => {
  })
  };
 
-const fetchData = async () => {
+const fetchData = async (e) => {
+  e.preventDefault();
 try {
   setLoading(true);
   const response = await axios.post(`${BASE_URL}/auth/register`,userData);
@@ -32,12 +33,9 @@ try {
   response && window.location.replace('/login');
 } catch (error) {
  setLoading(false);
- setError(error.response.message); 
+ setError(error.response.data); 
 }
 };
-fetchData();
-
-
   return (
     <>
     <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -52,7 +50,7 @@ fetchData();
             Register an account
           </h2>
         </div>
-        <form className="mt-8 space-y-6" action="#" method="POST">
+        <form className="mt-8 space-y-6" onSubmit={fetchData}>
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="-space-y-px rounded-md shadow-sm">
           <div>

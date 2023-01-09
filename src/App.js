@@ -7,9 +7,12 @@ import MainProducts from "./MainProducts/MainProducts";
 import Cart from "./Cart/Cart";
 import Shipping from "./Shipping/Shipping";
 import OrderComplete from "./OrderComplete/OrderComplete";
+import {useSelector} from "react-redux";
 import "swiper/css/bundle";
 import "./styles.css";
 function App() {
+const user = useSelector((state)=> state?.user.user);
+
   return (
   <BrowserRouter>
   <Routes>
@@ -18,8 +21,8 @@ function App() {
     <Route path="/login" element={<Login/>}/>
     <Route path="/forgotpassword" element={<ForgotPassword/>}/>
     <Route path="/products" element={<MainProducts/>}/>
-    <Route path="/shipping" element={<Shipping/>}/>
-    <Route path="/cart" element={<Cart/>}/>
+    <Route path="/shipping" element={user ? <Shipping/> : <Login/>}/>
+    <Route path="/cart" element={ <Cart/>}/>
     <Route path="/complete" element={<OrderComplete/>}/>
   </Routes> 
   </BrowserRouter>

@@ -7,8 +7,10 @@ import { useState } from 'react';
 import axios from 'axios';
 import { BASE_URL } from '../config/config';
 import {setLoginSuccess,setLoginFailure} from "../Redux/slices/UserSlice";
+import { useDispatch } from 'react-redux';
 
 const Login = () => {
+const dispatch = useDispatch();
 const [userData,setUserData] = useState({
   email:"",
   password:""
@@ -23,22 +25,21 @@ setUserData((initial)=>{
 }) 
 };
 
-const fetchData = async () => {
+const fetchData = async (e) => {
+  e.preventDefault();
   try {
     setLoading(true);
     const response = await axios.post(`${BASE_URL}/auth/login`,userData);
-    setLoginSuccess(response.data)
+    dispatch(setLoginSuccess(response.data));
+    console.log(response.data);
     setLoading(false);
-    
     response && window.location.replace('/');
   } catch (error) {
     setLoading(false);
     setLoginFailure();
-    setError(error.response.message);
+    setError(error.response.data);
   }
 }
-fetchData();
-
   return (
     <>
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -53,7 +54,7 @@ fetchData();
               Login to your account
             </h2>
           </div>
-          <form className="mt-8 space-y-6" action="#" method="POST">
+          <form className="mt-8 space-y-6" onSubmit={fetchData}>
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="-space-y-px rounded-md shadow-sm">
               <div>
