@@ -3,8 +3,42 @@ import {ImGoogle2} from 'react-icons/im';
 import {Link} from 'react-router-dom';
 import Logo from '../images/logo.png';
 import { LockClosedIcon } from '@heroicons/react/20/solid'
+import { useState } from 'react';
+import axios from 'axios';
+import { BASE_URL } from '../config/config';
+import {setLoginSuccess,setLoginFailure} from "../Redux/slices/UserSlice";
 
 const Login = () => {
+const [userData,setUserData] = useState({
+  email:"",
+  password:""
+});
+const [error,setError] = useState("");
+const [loading,setLoading] = useState(false);
+
+
+const handleChange = (e) => {
+setUserData((initial)=>{
+  return {...initial, [e.target.name]:e.target.value}
+}) 
+};
+
+const fetchData = async () => {
+  try {
+    setLoading(true);
+    const response = await axios.post(`${BASE_URL}/auth/login`,userData);
+    setLoginSuccess(response.data)
+    setLoading(false);
+    
+    response && window.location.replace('/');
+  } catch (error) {
+    setLoading(false);
+    setLoginFailure();
+    setError(error.response.message);
+  }
+}
+fetchData();
+
   return (
     <>
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -34,6 +68,7 @@ const Login = () => {
                   required
                   className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                   placeholder="Email address"
+                  onChange={handleChange}
                 />
               </div>
               <div>
@@ -48,6 +83,7 @@ const Login = () => {
                   required
                   className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                   placeholder="Password"
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -60,7 +96,7 @@ const Login = () => {
               </div>
             </div>
             <div className='text-center text-red-500 md:text-lg'>
-              {/* <p>something is wrong</p> */}
+              <p>{error}</p>
             </div>
             <div>
             <button
@@ -70,7 +106,7 @@ const Login = () => {
               <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                 <LockClosedIcon className="h-5 w-5 text-[#40AA54]-500 group-hover:text-[#40AA54]-400" aria-hidden="true" />
               </span>
-              Login
+              {loading ? "loading ..." : "Login"}
             </button>
             </div>
           </form>
