@@ -10,6 +10,8 @@ import OrderComplete from "./OrderComplete/OrderComplete";
 import {useSelector} from "react-redux";
 import "swiper/css/bundle";
 import "./styles.css";
+import Payment from "./Payments/Payment";
+import Confirmation from "./Confirmation/Confirmation";
 function App() {
 const user = useSelector((state)=> state?.user.user);
 
@@ -24,6 +26,8 @@ const user = useSelector((state)=> state?.user.user);
     <Route path="/shipping" element={user ? <Shipping/> : <Login/>}/>
     <Route path="/cart" element={ <Cart/>}/>
     <Route path="/complete" element={<OrderComplete/>}/>
+    <Route path="/payment" element={<Payment/>}/>
+    <Route path="/confirmation" element={<Confirmation/>}/>
   </Routes> 
   </BrowserRouter>
   );
