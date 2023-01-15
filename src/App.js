@@ -7,11 +7,17 @@ import MainProducts from "./MainProducts/MainProducts";
 import Cart from "./Cart/Cart";
 import Shipping from "./Shipping/Shipping";
 import OrderComplete from "./OrderComplete/OrderComplete";
+import AddProduct from "./Admin/AddProduct";
+import AddCategory from "./Admin/AddCategory";
+import CategoryList from "./Admin/CategoryList";
+import Orders from "./Admin/Orders";
+import ProductList from "./Admin/ProductList";
 import {useSelector} from "react-redux";
 import "swiper/css/bundle";
 import "./styles.css";
 import Payment from "./Payments/Payment";
 import Confirmation from "./Confirmation/Confirmation";
+import Dashboard from "./Admin/Dashboard";
 function App() {
 const user = useSelector((state)=> state?.user.user);
 
@@ -23,6 +29,13 @@ const user = useSelector((state)=> state?.user.user);
     <Route path="/login" element={<Login/>}/>
     <Route path="/forgotpassword" element={<ForgotPassword/>}/>
     <Route path="/products" element={<MainProducts/>}/>
+    <Route path="/dashboard" element={user.isAdmin === false ? <Dashboard/> : <Login/>}>
+    <Route path="/dashboard/add-product" element={<AddProduct/>}/>
+    <Route path="/dashboard/add-category" element={<AddCategory/>}/>
+    <Route path="/dashboard/category-list" element={<CategoryList/>}/>
+    <Route path="/dashboard/product-list" element={<ProductList/>}/>
+    <Route path="/dashboard/order" element={<Orders/>}/>
+    </Route>
     <Route path="/shipping" element={user ? <Shipping/> : <Login/>}/>
     <Route path="/cart" element={ <Cart/>}/>
     <Route path="/complete" element={<OrderComplete/>}/>

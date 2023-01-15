@@ -7,69 +7,69 @@ import spinach from '../Assets/spino.png';
 import kales from '../Assets/sukuma.png';
 import papaya from '../Assets/papa.png';
 import cabbage from '../Assets/cabo.png';
+import { useState } from 'react';
 // import Buttons from './Buttons';
 
 const MainProducts = () => {
- const category = [
-  {
-  name:"leaf"
-  },
-  {
-    name:"spinach"
-  },
-  {
-    name:"tomato"
- },
- {
-  name:"onion"
-  },
-  {
-    name:"saumu"
-  },
-  {
-    name:"carrot"
-  },
- ];
+const [category,setCategory] = useState();
+const [search,setSearch] = useState();
 
  const products = [
   {
    "imageUrl":cabbage,
    "title":"Cabbage",
    "size":"1kg",
-   "price":"10"
+   "price":"10",
+   "category":"leafs"
   },
   {
     "imageUrl":spinach,
     "title":"Spinach",
     "size":"1kg",
-    "price":"10"
+    "price":"10",
+    "category":"leafs"
    },
    {
     "imageUrl":kales,
     "title":"Kale",
     "size":"1kg",
-    "price":"10"
+    "price":"10",
+    "category":"leafs"
    },
    {
     "imageUrl":papaya,
     "title":"Papaya",
     "size":"1kg",
-    "price":"10"
+    "price":"10",
+    "category":"roots"
    },
    {
     "imageUrl":tomatoes,
     "title":"Tomatoes",
     "size":"1kg",
-    "price":"10"
+    "price":"10",
+    "category":"vegetables"
    },
    {
     "imageUrl":onions,
     "title":"Onions",
     "size":"1kg",
-    "price":"10"
+    "price":"10",
+    "category":"arrowroots"
    },
  ];
 
+const allcategories = ['all', ...new Set(products.map((main)=> main.category))]
+
+const handleCategory = (e) => {
+  if(e.target.value === 'all') {
+   setCategory('');
+   setSearch('')
+  } else  {
+    setCategory(e.target.value);
+    setSearch('');
+  }
+}
 
   return (
     <div className='max-w-[1640px]'>
@@ -83,6 +83,7 @@ const MainProducts = () => {
       type="text"
       name="text"
       placeholder="search your daily groceries"
+      onChange={(e)=>setSearch(e.target.value.toLowerCase())}
     />
     <button
       type="submit"
@@ -94,8 +95,8 @@ const MainProducts = () => {
 
   {/* filter buttons */}
     <div className='flex justfiy-between flex-wrap'>
-      {category.map((cate,index)=>{
-       return <button className='m-1 border p-1 rounded-lg border-[#40AA54] text-[#40AA54] hover:bg-[#40AA54] hover:text-[#F7F7F7]' key={index}>{cate.name}</button>
+      {allcategories.map((cate,index)=>{
+       return <button className='m-1 border p-1 rounded-lg border-[#40AA54] text-[#40AA54] hover:bg-[#40AA54] hover:text-[#F7F7F7]'value={cate} onChange={handleCategory} key={index}>{cate}</button>
       })}
     </div>
      </div>
