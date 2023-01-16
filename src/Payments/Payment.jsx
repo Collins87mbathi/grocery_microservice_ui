@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import { Link } from 'react-router-dom';
 
 const Payment = () => {
-const [loading,setLoading] = useState(false);
+const [loading] = useState(false);
 
   return (
     <div className="flex flex-col items-center  mt-[50px]">

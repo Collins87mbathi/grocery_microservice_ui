@@ -1,74 +1,57 @@
 import React from 'react';
 import Navbar from "../Navbar/Navbar";
 import Product from '../Product/Product';
-import onions from '../Assets/kitungu.png';
-import tomatoes from '../Assets/toma.png';
-import spinach from '../Assets/spino.png';
-import kales from '../Assets/sukuma.png';
-import papaya from '../Assets/papa.png';
-import cabbage from '../Assets/cabo.png';
 import { useState } from 'react';
-// import Buttons from './Buttons';
+import { useEffect } from 'react';
+import axios from 'axios';
+import {BASE_URL} from "../config/config";
 
 const MainProducts = () => {
-const [category,setCategory] = useState();
-const [search,setSearch] = useState();
+const [products,setProducts] = useState([]);
+const [categories,setCategories] = useState([]);
+const [category,setCategory] = useState('');
+const [search,setSearch] = useState('');
 
- const products = [
-  {
-   "imageUrl":cabbage,
-   "title":"Cabbage",
-   "size":"1kg",
-   "price":"10",
-   "category":"leafs"
-  },
-  {
-    "imageUrl":spinach,
-    "title":"Spinach",
-    "size":"1kg",
-    "price":"10",
-    "category":"leafs"
-   },
-   {
-    "imageUrl":kales,
-    "title":"Kale",
-    "size":"1kg",
-    "price":"10",
-    "category":"leafs"
-   },
-   {
-    "imageUrl":papaya,
-    "title":"Papaya",
-    "size":"1kg",
-    "price":"10",
-    "category":"roots"
-   },
-   {
-    "imageUrl":tomatoes,
-    "title":"Tomatoes",
-    "size":"1kg",
-    "price":"10",
-    "category":"vegetables"
-   },
-   {
-    "imageUrl":onions,
-    "title":"Onions",
-    "size":"1kg",
-    "price":"10",
-    "category":"arrowroots"
-   },
- ];
 
-const allcategories = ['all', ...new Set(products.map((main)=> main.category))]
 
-const handleCategory = (e) => {
-  if(e.target.value === 'all') {
-   setCategory('');
-   setSearch('')
-  } else  {
-    setCategory(e.target.value);
-    setSearch('');
+
+useEffect(()=>{
+const fetchCategories = async () => {
+  try {
+    const response = await axios.get(BASE_URL + '/category');
+    setCategories(response.data); 
+  } catch (error) {
+   console.log(error);
   }
+}
+fetchCategories();
+},[]);
+
+
+ useEffect(()=>{
+  const fetchProducts = async () => {
+    try {
+      const response = await  axios.get(`${BASE_URL}/products/all?category=${category}`);
+      setProducts(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+   }
+fetchProducts();
+ },[category,search]);
+
+const allcategories = ['all', ...new Set(categories.map((main)=> main.name))]
+
+const handleCategory = (category) => {
+  if(category === 'all') {
+   setCategory('');
+   setSearch('');
+   return;
+  } 
+    setCategory(category);
+    setSearch('');
+
 }
 
   return (
@@ -83,7 +66,7 @@ const handleCategory = (e) => {
       type="text"
       name="text"
       placeholder="search your daily groceries"
-      onChange={(e)=>setSearch(e.target.value.toLowerCase())}
+      onChange={(e)=>setSearch(e.target.value)}
     />
     <button
       type="submit"
@@ -96,13 +79,16 @@ const handleCategory = (e) => {
   {/* filter buttons */}
     <div className='flex justfiy-between flex-wrap'>
       {allcategories.map((cate,index)=>{
-       return <button className='m-1 border p-1 rounded-lg border-[#40AA54] text-[#40AA54] hover:bg-[#40AA54] hover:text-[#F7F7F7]'value={cate} onChange={handleCategory} key={index}>{cate}</button>
+       return <button className='m-1 border p-1 rounded-lg border-[#40AA54] text-[#40AA54] hover:bg-[#40AA54] hover:text-[#F7F7F7]' onClick={() => handleCategory(cate)} key={index}>{cate}</button>
       })}
     </div>
      </div>
      <div className='grid grid-cols-2 lg:grid-cols-4 gap-6 pt-4'>
          {
-          products.map((product,index)=> {
+
+          products?.filter((prod)=>{
+           return prod.title.tolowercase().includes(search)
+          }).map((product,index)=> {
             return <Product key={index} product={product}/>
           })
          }

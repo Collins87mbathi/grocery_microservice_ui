@@ -11,7 +11,7 @@ export default function ProductList() {
 
 const fetchProducts = async () => {
   try {
-    const response = await axios.get(BASE_URL + '/products');
+    const response = await axios.get(BASE_URL + '/products/all');
     setData(response.data); 
   } catch (error) {
     console.log(error);

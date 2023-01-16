@@ -1,52 +1,32 @@
-import React from "react"
+import React,{useState,useEffect} from "react"
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import Product from '../Product/Product';
-import onions from '../Assets/kitungu.png';
-import tomatoes from '../Assets/toma.png';
-import spinach from '../Assets/spino.png';
-import kales from '../Assets/sukuma.png';
-import papaya from '../Assets/papa.png';
-import cabbage from '../Assets/cabo.png';
+import Product from "../Product/Product";
+import { BASE_URL } from '../config/config';
+import axios from "axios";
+
 const CheapProduct = () => {
-    const products = [
-        {
-         "imageUrl":cabbage,
-         "title":"Cabbage",
-         "size":"1kg",
-         "price":"10"
-        },
-        {
-          "imageUrl":spinach,
-          "title":"Spinach",
-          "size":"1kg",
-          "price":"10"
-         },
-         {
-          "imageUrl":kales,
-          "title":"Kale",
-          "size":"1kg",
-          "price":"10"
-         },
-         {
-          "imageUrl":papaya,
-          "title":"Papaya",
-          "size":"1kg",
-          "price":"10"
-         },
-         {
-          "imageUrl":tomatoes,
-          "title":"Tomatoes",
-          "size":"1kg",
-          "price":"10"
-         },
-         {
-          "imageUrl":onions,
-          "title":"Onions",
-          "size":"1kg",
-          "price":"10"
-         },
-       ];
+  const [products,setProducts] = useState([]);
+  
+    const fetchproducts = async () => {
+      try {
+        const response = await axios.get(`${BASE_URL}/products`);
+        if (response.status === 200 && response.data.length > 0) {
+          setProducts(response.data);
+        } else if (response.status === 200 && response.data.length === 0) {
+          setProducts([]);
+        }
+    
+        return response.data;
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    useEffect(()=>{
+     fetchproducts();
+    },[]);
+      
+    
        const responsive = {
         superLargeDesktop: {
           // the naming can be any, depends on you.

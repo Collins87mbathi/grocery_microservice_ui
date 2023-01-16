@@ -33,7 +33,7 @@ const {img,title,price,size} = product;
        
     <div className='flex gap-1 flex-col ml-4 mt-8'>
         <h3 className='font-bold'>{title}</h3>
-        <p className='text-gray-500 text-[13px]'>{size}</p>
+        <p className='text-gray-500 text-[13px]'>{size} kg</p>
         <h3>${price}</h3>
         <div className='flex items-center justify-between mb-2'>
     <div className='flex items-center gap-2'>
