@@ -33,7 +33,6 @@ fetchCategories();
     try {
       const response = await  axios.get(`${BASE_URL}/products/all?category=${category}`);
       setProducts(response.data);
-      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -86,8 +85,13 @@ const handleCategory = (category) => {
      <div className='grid grid-cols-2 lg:grid-cols-4 gap-6 pt-4'>
          {
 
+          // eslint-disable-next-line array-callback-return
           products?.filter((prod)=>{
-           return prod.title.tolowercase().includes(search)
+           if(search === "") {
+            return prod
+           } else if(prod.title?.toLowerCase().includes(search.toLowerCase())) {
+            return prod;
+           }
           }).map((product,index)=> {
             return <Product key={index} product={product}/>
           })
