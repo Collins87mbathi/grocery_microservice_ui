@@ -30,7 +30,7 @@ const user = useSelector((state)=> state?.user.user);
     <Route path="/login" element={<Login/>}/>
     <Route path="/forgotpassword" element={<ForgotPassword/>}/>
     <Route path="/products" element={<MainProducts/>}/>
-    <Route path="/dashboard" element={user.isAdmin === false ? <Dashboard/> : <Login/>}>
+    <Route path="/dashboard" element={user?.isAdmin === false ? <Dashboard/> : <Login/>}>
     <Route path="/dashboard/add-product" element={<AddProduct/>}/>
     <Route path="/dashboard/add-category" element={<AddCategory/>}/>
     <Route path="/dashboard/category-list" element={<CategoryList/>}/>

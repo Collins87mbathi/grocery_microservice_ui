@@ -16,8 +16,7 @@ const Navbar = () => {
   const handleNav = () => {
     setNav(!nav);
   };
-  const Logout = (e) => {
-  e.preventDefault();
+  const Logout = () => {
   const confirmed = window.confirm('Are you sure you want to logout?');
   if (confirmed) return dispatch(logout());
   };
@@ -70,7 +69,7 @@ const Navbar = () => {
           </>
         ) : (
           <><li className="text-[18px] font-semibold cursor-pointer flex items-center"><img className="w-[40px] h-[40px] rounded-[50%] object-cover" src={createImageFromInitials(500, user?.fullname, getRandomColor())} alt="img" /></li><li className="p-4 hover:text-[#40AA54] text-[#16162E] active:text-[#40AA54] transition duration-500 focus:text-[#40AA54]">
-             <AiOutlineLogout onClick={()=>{Logout()}}  className="text-[30px]"/>
+             <AiOutlineLogout onClick={()=>{Logout()}}  className="cursor-pointer text-[30px]"/>
             </li></>
         )}
       </ul>
@@ -121,7 +120,7 @@ const Navbar = () => {
           </>
         ) : (
           <><li className="text-[18px] font-semibold cursor-pointer flex items-center"><img className="w-[40px] h-[40px] rounded-[50%] object-cover" src={createImageFromInitials(500, user?.fullname, getRandomColor())} alt="img" /></li><li className="p-4 hover:text-[#40AA54] text-[#16162E] active:text-[#40AA54] transition duration-500 focus:text-[#40AA54]">
-              <AiOutlineLogout  onClick={()=>{Logout()}} className="text-[30px]"/>
+              <AiOutlineLogout  onClick={()=>{Logout()}} className="cursor-pointer text-[30px]"/>
             </li></>
         )}
       </ul>
