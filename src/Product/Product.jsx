@@ -1,4 +1,6 @@
-import React,{useState} from 'react'
+import React,{useState} from 'react';
+import {toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 import {HiOutlineShoppingBag} from "react-icons/hi";
 import { useDispatch } from 'react-redux';
 import {addProduct} from "../Redux/slices/CartSlice";
@@ -12,6 +14,16 @@ const [prod,setProd] = useState(product);
 
 const [quantity,setQuantity] = useState(1)
  const handleClick = () => {
+  toast.success('added to cart', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    });
   dispatch(
     addProduct({...prod,quantity})
     )
@@ -29,6 +41,7 @@ const {img,title,price,size} = product;
 
   return (
     <div className='border shadow-lg rounded-lg hover:scale-105 duration-300'>
+      
        <div className='flex justify-center'><img src={img} className='w-full h-[200px] pt-4' alt='png'/> </div>
        
     <div className='flex gap-1 flex-col ml-4 mt-8'>

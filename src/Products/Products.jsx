@@ -1,4 +1,5 @@
 import React,{useEffect, useState} from 'react';
+
 import Product from '../Product/Product';
 import { Link } from 'react-router-dom';
 import { LazyMotion, domAnimation, m } from "framer-motion"
@@ -36,6 +37,7 @@ const [loading,setLoading] = useState(false);
   let circleCommonClasses = 'h-2.5 w-2.5 bg-current   rounded-full';
   return (
     <div className="max-w-[1640px] m-auto px-4 py-12">
+
         <div className='flex justify-between items-center'>
             <h3 className='md:text-[20px] font-bold'>Popular Product</h3>
             <button className='rounded-3xl bg-[#40AA54] text-[#F7F7F7] px-[0.75rem] py-[0.55rem] w-[20%] md:text-[16px] text-[12px]'><Link to='/products'>see all</Link></button>

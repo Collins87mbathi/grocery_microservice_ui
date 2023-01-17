@@ -5,6 +5,7 @@ import Navbar from "../Navbar/Navbar";
 import { Link } from "react-router-dom";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import { useSelector } from "react-redux";
+import NOTFOUND from "../Assets/not.png";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
@@ -16,7 +17,14 @@ const Cart = () => {
         <h1 className="py-8 font-semibold text-[20px]">Shopping Cart</h1>
         <div className="flex flex-col justify-between lg:flex-row">
           <div className="lg:w-[400px] border-t border-gray-200 p-4">
-            <ul role="list" className="-my-6 divide-y divide-gray-200">
+            {
+             cart?.products.length === 0 ? (
+              <div className='flex flex-col justify-center items-center'>
+              <img src={NOTFOUND} alt='alt'/>
+              <p>product not found</p>
+            </div>
+             ) : (
+              <ul role="list" className="-my-6 divide-y divide-gray-200">
               {cart?.products.map((product) => (
                 <li key={product._id} className="flex py-6">
                   <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
@@ -55,6 +63,11 @@ const Cart = () => {
                 </li>
               ))}
             </ul>
+
+             )
+
+            }
+            
           </div>
           <div>
             <div className=" lg:w-[400px] border-t border-gray-200 py-8 px-8 sm:px-6">

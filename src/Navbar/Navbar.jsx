@@ -4,15 +4,25 @@ import { Link } from "react-router-dom";
 import {createImageFromInitials} from "../Utils/getInitials";
 import {getRandomColor} from "../Utils/getRandomColor";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import {AiOutlineLogout} from "react-icons/ai";
+import {logout} from "../Redux/slices/UserSlice";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const user = useSelector((state) => state?.user.user);
   const cart = useSelector((state)=>state?.cart);
+  const dispatch = useDispatch();
   const handleNav = () => {
     setNav(!nav);
   };
+  const Logout = (e) => {
+  e.preventDefault();
+  const confirmed = window.confirm('Are you sure you want to logout?');
+  if (confirmed) return dispatch(logout());
+  };
+
+
   return (
     <div className="max-w-[1640px] h-[60px] mx-auto flex justify-between items-center p-4">
       <img className=" h-[80px] w-auto " src={Logo} alt="company" />
@@ -35,14 +45,16 @@ const Navbar = () => {
           <Link to="/products">Products</Link>
         </li>
         <li className="p-4 hover:text-[#40AA54] text-[#16162E] active:text-[#40AA54] transition duration-500 focus:text-[#40AA54]">
-          About
+       <Link to="/orders">
+       Orders
+       </Link>
         </li>
         {user === null ? (
           <>
             <li>
               <Link
                 to="/register"
-                className="flex justify-center bg-[#40AA54] p-1 rounded-md  hover:bg-[#F7F7F7] border-2  flex gap-4 m-2 transition duration-500 active:text-neutral-500 text-center"
+                className="flex justify-center bg-[#40AA54] p-1 rounded-md  hover:bg-[#F7F7F7] border-2 gap-4 m-2 transition duration-500 active:text-neutral-500 text-center"
               >
                 Register
               </Link>
@@ -57,9 +69,9 @@ const Navbar = () => {
             </li>
           </>
         ) : (
-          <li className="text-[18px] font-semibold cursor-pointer flex items-center"><img className="w-[40px] h-[40px] rounded-[50%] object-cover" src={
-            createImageFromInitials(500, user?.fullname , getRandomColor())
-          } alt="img" /></li>
+          <><li className="text-[18px] font-semibold cursor-pointer flex items-center"><img className="w-[40px] h-[40px] rounded-[50%] object-cover" src={createImageFromInitials(500, user?.fullname, getRandomColor())} alt="img" /></li><li className="p-4 hover:text-[#40AA54] text-[#16162E] active:text-[#40AA54] transition duration-500 focus:text-[#40AA54]">
+             <AiOutlineLogout onClick={()=>{Logout()}}  className="text-[30px]"/>
+            </li></>
         )}
       </ul>
       <div onClick={handleNav} className="block md:hidden">
@@ -84,14 +96,16 @@ const Navbar = () => {
           <Link to="/products">Products</Link>
         </li>
         <li className="p-4 hover:text-[#40AA54]  text-[#16162E] active:text-[#40AA54] transition duration-500">
-          About
+        <Link to="/orders">
+       Orders
+       </Link>
         </li>
         {user === null ? (
           <>
             <li>
               <Link
                 to="/register"
-                className="flex justify-center bg-[#40AA54] p-1 rounded-md  hover:bg-[#F7F7F7] border-2  flex gap-4 m-2 transition duration-500 active:text-neutral-500 text-center"
+                className="flex justify-center bg-[#40AA54] p-1 rounded-md  hover:bg-[#F7F7F7] border-2 gap-4 m-2 transition duration-500 active:text-neutral-500 text-center"
               >
                 Register
               </Link>
@@ -106,9 +120,9 @@ const Navbar = () => {
             </li>
           </>
         ) : (
-          <li className="text-[18px] font-semibold cursor-pointer flex items-center"><img className="w-[40px] h-[40px] rounded-[50%] object-cover" src={
-            createImageFromInitials(500, user?.fullname , getRandomColor())
-          } alt="img" /></li>
+          <><li className="text-[18px] font-semibold cursor-pointer flex items-center"><img className="w-[40px] h-[40px] rounded-[50%] object-cover" src={createImageFromInitials(500, user?.fullname, getRandomColor())} alt="img" /></li><li className="p-4 hover:text-[#40AA54] text-[#16162E] active:text-[#40AA54] transition duration-500 focus:text-[#40AA54]">
+              <AiOutlineLogout  onClick={()=>{Logout()}} className="text-[30px]"/>
+            </li></>
         )}
       </ul>
     </div>

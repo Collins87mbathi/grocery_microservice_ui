@@ -18,6 +18,7 @@ import "./styles.css";
 import Payment from "./Payments/Payment";
 import Confirmation from "./Confirmation/Confirmation";
 import Dashboard from "./Admin/Dashboard";
+import OrdersUser from "./Orders/Orders";
 function App() {
 const user = useSelector((state)=> state?.user.user);
 
@@ -37,6 +38,7 @@ const user = useSelector((state)=> state?.user.user);
     <Route path="/dashboard/order" element={<Orders/>}/>
     </Route>
     <Route path="/shipping" element={user ? <Shipping/> : <Login/>}/>
+    <Route path="/orders" element={user ? <OrdersUser/> : <Login/>}/>
     <Route path="/cart" element={ <Cart/>}/>
     <Route path="/complete" element={<OrderComplete/>}/>
     <Route path="/payment" element={<Payment/>}/>

@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
 import {BASE_URL} from "../config/config";
+import NOTFOUND from "../Assets/not.png"
 
 const MainProducts = () => {
 const [products,setProducts] = useState([]);
@@ -67,16 +68,16 @@ const handleCategory = (category) => {
       placeholder="search your daily groceries"
       onChange={(e)=>setSearch(e.target.value)}
     />
-    <button
+    {/* <button
       type="submit"
       className="text-[#F7F7F7] w-28  p-2 bg-[#40AA54] ml-[-30px] md:ml-[-50px] rounded-3xl"
     >
       search
-    </button>
+    </button> */}
   </div>
 
   {/* filter buttons */}
-    <div className='flex justfiy-between flex-wrap'>
+    <div className='max-w-[1640px] flex justfiy-between flex-wrap'>
       {allcategories.map((cate,index)=>{
        return <button className='m-1 border p-1 rounded-lg border-[#40AA54] text-[#40AA54] hover:bg-[#40AA54] hover:text-[#F7F7F7]' onClick={() => handleCategory(cate)} key={index}>{cate}</button>
       })}
@@ -84,7 +85,12 @@ const handleCategory = (category) => {
      </div>
      <div className='grid grid-cols-2 lg:grid-cols-4 gap-6 pt-4'>
          {
-
+          products.length === 0 ? (
+            <div className='flex flex-col justify-center items-center'>
+              <img src={NOTFOUND} alt='alt'/>
+              <p>product not found</p>
+            </div>
+          ) : (
           // eslint-disable-next-line array-callback-return
           products?.filter((prod)=>{
            if(search === "") {
@@ -95,7 +101,9 @@ const handleCategory = (category) => {
           }).map((product,index)=> {
             return <Product key={index} product={product}/>
           })
+          )
          }
+
         </div>
       </div>
     </div>

@@ -6,6 +6,7 @@ import {useSelector} from "react-redux";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import axios from "axios";
 import { BASE_URL } from "../config/config";
+import { toast } from "react-toastify";
 
 
 const Shipping = () => {
@@ -63,11 +64,29 @@ const handleClick = async (e) => {
    const response = await axios.post(`${BASE_URL}/address`,userData,
    {headers: { authorization: `Bearer ${user.token}` }}
    );
-   response && window.alert("your details were successfully added");
+   response && toast.success('your data was successfully saved', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    });
    setLoading(false);
   } catch (error) {
     setLoading(false);
-    window.alert(error.response.data);
+    toast.error(`${error.response.data}`, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
   }
 }
 
