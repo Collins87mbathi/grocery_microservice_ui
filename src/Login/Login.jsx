@@ -32,7 +32,7 @@ const fetchData = async (e) => {
     const response = await axios.post(`${BASE_URL}/auth/login`,userData);
     dispatch(setLoginSuccess(response.data));
     setLoading(false);
-    response.data.isAdmin === true ? window.location.replace('/#/dashboard') : window.location.replace('/')
+    response.data.isAdmin === true ? window.location.replace('/dashboard') : window.location.replace('/')
   } catch (error) {
     setLoading(false);
     setLoginFailure();
