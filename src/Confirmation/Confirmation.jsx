@@ -7,7 +7,6 @@ import { toast } from "react-toastify";
 const Confirmation = () => {
   const [loading,setLoading] = useState(false);
   const [orderId,setOrderId] = useState('');
-  const [email,setEmail] = useState('');
   const user = useSelector((state)=>state.user.user);
 
   
@@ -18,13 +17,12 @@ user?.orders.filter((order)=>{
   }
 })
 
- setEmail(user.email);
  const fetchProduct = async () => {
   try {
     setLoading(true);
  const response = await axios.post(BASE_URL + '/sendmail',{
   orderId,
-  email
+  email:user.email
  })
  response && window.location.replace('/complete');
  setLoading(false); 
