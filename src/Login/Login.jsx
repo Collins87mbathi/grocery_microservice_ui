@@ -31,9 +31,8 @@ const fetchData = async (e) => {
     setLoading(true);
     const response = await axios.post(`${BASE_URL}/auth/login`,userData);
     dispatch(setLoginSuccess(response.data));
-    console.log(response.data);
     setLoading(false);
-    response && window.location.replace('/');
+    response.data.isAdmin === true ? window.location.replace('/dashboard') : window.location.replace('/')
   } catch (error) {
     setLoading(false);
     setLoginFailure();

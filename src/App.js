@@ -2,7 +2,7 @@ import Register from "./Register/Register";
 import Login from "./Login/Login";
 import Home from "./Home/Home";
 import ForgotPassword from "./ForgotPassword/ForgotPassword";
-import {BrowserRouter ,Routes, Route} from "react-router-dom";
+import {HashRouter ,Routes, Route} from "react-router-dom";
 import MainProducts from "./MainProducts/MainProducts";
 import Cart from "./Cart/Cart";
 import Shipping from "./Shipping/Shipping";
@@ -24,7 +24,7 @@ function App() {
 const user = useSelector((state)=> state?.user.user);
 
   return (
-  <BrowserRouter>
+  <HashRouter>
   <Routes>
     <Route path="/" element={<Home/>}/>
     <Route path="/register" element={<Register/>}/>
@@ -45,7 +45,7 @@ const user = useSelector((state)=> state?.user.user);
     <Route path="/payment" element={user ? <Payment/> : <Login/>}/>
     <Route path="/confirmation" element={user ? <Confirmation/> : <Login/>}/>
   </Routes> 
-  </BrowserRouter>
+  </HashRouter>
   );
 }
 
