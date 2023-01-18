@@ -23,7 +23,7 @@ const Navbar = () => {
 
 
   return (
-    <div className="max-w-[1640px] h-[60px] mx-auto flex justify-between items-center p-4">
+    <div className="max-w-[1640px] h-[60px]  mx-auto flex justify-between items-center p-4">
       <img className=" h-[80px] w-auto " src={Logo} alt="company" />
       {/* <h1 className='text-2xl sm:text-3xl lg:text-4xl px-2 text-[#40AA54] '>
           Perez <span className='font-bold text-[#16162E]'>Grabs</span>
