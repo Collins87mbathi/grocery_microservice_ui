@@ -40,7 +40,7 @@ const Payment = () => {
 const postPayment = async () => {
   try {
     setLoading(true);
-    const  response = await axios.post(BASE_URL + "/payment/stkPush", {
+    const  response = await axios.post(`${BASE_URL}/payment/stkPush`, {
       orderId,
       amount,
       phone
@@ -75,7 +75,7 @@ const postPayment = async () => {
 const confirmPayment = async () => {
   try {
     setLoading(true);
-    const  response = await axios.post(BASE_URL + `/payment/${orderId}`);
+    const  response = await axios.post(`${BASE_URL}/payment/${orderId}`);
     response && window.location.replace('/confirmation');
   } catch (error) {
     toast.error(error.response.data, {
