@@ -42,7 +42,7 @@ const {img,title,price,size} = product;
   return (
     <div className='border shadow-lg rounded-lg hover:scale-105 duration-300'>
       
-       <div className='flex justify-center'><img src={img} className='w-full h-[200px] pt-4' alt='png'/> </div>
+       <div className='flex justify-center'><img src={img} className='w-full h-[200px] pt-4 object-contain' alt='png'/> </div>
        
     <div className='flex gap-1 flex-col ml-4 mt-8'>
         <h3 className='font-bold'>{title}</h3>
