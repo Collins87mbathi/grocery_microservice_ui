@@ -1,0 +1,8 @@
+.footer h2::after{
+    content: " ";
+    position: relative;
+    padding: 1px;
+    background-color: yellowgreen;
+    width: 20%;
+    display: block;
+}
