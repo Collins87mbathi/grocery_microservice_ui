@@ -2,6 +2,5 @@
     padding: 0 10px;
     display: flex;
     overflow-x: hidden;
-    gap:2rem;
     scroll-behavior: smooth;
 }

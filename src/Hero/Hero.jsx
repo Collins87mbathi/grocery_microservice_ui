@@ -4,9 +4,9 @@ import "./Hero.css";
 
 const Hero = () => {
   return (
-    <div className="max-w-[1640px] mx-auto p-4">
+    <div className="mx-auto max-w-4xl xl:max-w-6xl">
       <div className="max-h-[500px] relative">
-        <div className="absolute w-full h-full text-gray-200 max-h-[500px] bg-black/40 flex flex-col justify-center">
+        <div className="absolute w-full text-gray-200 space-y-5 h-full bg-black/40 flex flex-col justify-center items-center">
           <h1 className="px-4 text-[#F7F7F7] md:text-4xl font-extrabold text-2xl">
             Order your
           </h1>
@@ -18,7 +18,7 @@ const Hero = () => {
           </h2>
           <div className="px-4 flex">
             <input
-              className="w-80 text-xs md:text-sm rounded-3xl outline-none"
+              className="w-full text-xs md:text-sm rounded-3xl outline-none md:w-80"
               type="text"
               name="text"
               placeholder="search your daily groceries"
