@@ -45,7 +45,7 @@ const postPayment = async () => {
       amount,
       phone
     });
-    response && toast.success('your payment was successful', {
+    response && toast.success('please check your phone to complete transaction', {
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
@@ -58,16 +58,16 @@ const postPayment = async () => {
       setLoading(false)
   } catch (error) {
     console.log(error);
-    // toast.error(error.response.data, {
-    //   position: "top-center",
-    //   autoClose: 5000,
-    //   hideProgressBar: false,
-    //   closeOnClick: true,
-    //   pauseOnHover: true,
-    //   draggable: true,
-    //   progress: undefined,
-    //   theme: "light",
-    //   });
+    toast.error("The payment was not successful", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
   }
   
 } 
@@ -97,16 +97,11 @@ const confirmPayment = async () => {
       <h2 className="font-semibold text-xl text-[#40AA54]">Pay with Mpesa</h2>
         <div className="mt-4">
           <div className="w-[300px]">
-            <label
-              htmlFor="phone"
-              className="block mb-3 text-sm font-semibold text-gray-500"
-            >
-              Number
-            </label>
+            <p>write your mpesa number starting with 2547...</p>
             <input
               name="phone"
               type="text"
-              placeholder="enter the number you are paying with"
+              placeholder="2547..."
               className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
               onChange={(e)=>setPhone(e.target.value)}
             />
