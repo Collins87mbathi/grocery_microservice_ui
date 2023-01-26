@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 const Shipping = () => {
 const cart = useSelector((state)=> state?.cart);
 const user = useSelector((state)=> state.user.user);
-
+console.log(user.address);
 const [userData,setUserData] = useState({
  city : "",
  number:"",
@@ -96,64 +96,93 @@ const handleClick = async (e) => {
       <ProgressBar current={2} completeB={false} />
       <div className="">
         </div>
+        
         <div className="container p-4 mx-auto">
             <div className="flex flex-col w-full px-0 mx-auto md:flex-row">
-                <div className="flex flex-col md:w-full">
-                    <h2 className="mb-4 font-bold md:text-xl text-heading ">Shipping Address
-                    </h2>
-                    <form className="justify-center w-full mx-auto">
-                        <div className="">
-                            <div className="space-x-0 lg:flex lg:space-x-4">
-                                <div className="w-full lg:w-1/2">
-                                    <label htmlFor="city" className="block mb-3 text-sm font-semibold text-gray-500">
-                                        City</label>
-                                    <input name="city" type="text" placeholder="city"
-                                        className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
-                                        onChange={handleChange}
-                                        />
-                                    
-                                </div>
-                            </div>
-                            <div className="mt-4">
-                                <div className="w-full">
-                                    <label htmlFor="number"
-                                        className="block mb-3 text-sm font-semibold text-gray-500">Number</label>
-                                    <input name="number" type="text" placeholder="number"
-                                        className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
-                                        onChange={handleChange}
-                                        />
-                                </div>
-                            </div>
-                            <div className="space-x-0 lg:flex lg:space-x-4">
-                                <div className="w-full lg:w-1/2">
-                                    <label htmlFor="subcounty"
-                                        className="block mb-3 text-sm font-semibold text-gray-500">Subcounty</label>
-                                    <input name="subcounty" type="text" placeholder="subcounty"
-                                        className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
-                                        onChange={handleChange}
-                                        />
-                                </div>
-                                <div className="w-full lg:w-1/2 ">
-                                    <label htmlFor="street" className="block mb-3 text-sm font-semibold text-gray-500">
-                                    street</label>
-                                    <input name="street" type="text" placeholder="Street"
-                                        className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
-                                        onChange={handleChange}
-                                        />
-                                </div>
-                            </div>
-            
-                            <div className="mt-4">
-                                <button
-                                    className="w-full px-6 py-2 text-[#F7F7F7] bg-[#40AA54] hover:bg-[#40AA54]" 
-                                    onClick={handleClick}
-                                    >
-                                        {loading ? "loading" : "save address"}
-                                         </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+            {user?.address === 0 ?  (
+          <div className="flex flex-col md:w-full">
+          <h2 className="mb-4 font-bold md:text-xl text-heading ">Shipping Address
+          </h2>
+          <form className="justify-center w-full mx-auto">
+              <div className="">
+                  <div className="space-x-0 lg:flex lg:space-x-4">
+                      <div className="w-full lg:w-1/2">
+                          <label htmlFor="city" className="block mb-3 text-sm font-semibold text-gray-500">
+                              City</label>
+                          <input name="city" type="text" placeholder="city"
+                              className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
+                              onChange={handleChange}
+                              />
+                          
+                      </div>
+                  </div>
+                  <div className="mt-4">
+                      <div className="w-full">
+                          <label htmlFor="number"
+                              className="block mb-3 text-sm font-semibold text-gray-500">Number</label>
+                          <input name="number" type="text" placeholder="number"
+                              className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
+                              onChange={handleChange}
+                              />
+                      </div>
+                  </div>
+                  <div className="space-x-0 lg:flex lg:space-x-4">
+                      <div className="w-full lg:w-1/2">
+                          <label htmlFor="subcounty"
+                              className="block mb-3 text-sm font-semibold text-gray-500">Subcounty</label>
+                          <input name="subcounty" type="text" placeholder="subcounty"
+                              className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
+                              onChange={handleChange}
+                              />
+                      </div>
+                      <div className="w-full lg:w-1/2 ">
+                          <label htmlFor="street" className="block mb-3 text-sm font-semibold text-gray-500">
+                          street</label>
+                          <input name="street" type="text" placeholder="Street"
+                              className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
+                              onChange={handleChange}
+                              />
+                      </div>
+                  </div>
+  
+                  <div className="mt-4">
+                      <button
+                          className="w-full px-6 py-2 text-[#F7F7F7] bg-[#40AA54] hover:bg-[#40AA54]" 
+                          onClick={handleClick}
+                          >
+                              {loading ? "loading" : "save address"}
+                               </button>
+                  </div>
+              </div>
+          </form>
+      </div>
+        ) : (
+          <div className="">
+          {user?.address.map((addr)=> {
+          return addr.map((add) => (
+          <div className="" key={add._id}>
+             <p>
+                  <span className="font-semibold">City :</span>{" "}
+                  {add.city}{" "}
+                </p>
+                <p>
+                  <span className="font-semibold">Number :</span>{" "}
+                  {add.number}
+                </p>
+                <p>
+                  <span className="font-semibold">Street :</span>{" "}
+                  {add.street}
+                </p>
+                <p>
+                  <span className="font-semibold">SubCounty :</span>{" "}
+                  {add.subcounty}
+                </p>
+          </div>
+          ))
+          }
+          )}
+          </div>
+        ) }
                 <div className="flex flex-col w-full ml-0 lg:ml-12 lg:w-2/5">
                     <div className="pt-12 md:pt-0 2xl:ps-4">
                         <h2 className="text-xl font-bold">Order Summary
