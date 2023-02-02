@@ -1,4 +1,5 @@
 import React from 'react';
+import Blog from '../Blog/Blog';
 import CheapProduct from '../CheapProduct/CheapProduct';
 import Filter from '../Filter/Filter';
 import Footer from '../Footer/Footer';
@@ -15,6 +16,7 @@ const Home = () => {
    <Filter/>
    <Products/>
    <CheapProduct/>
+   <Blog/>
    <Footer/>
    </>
   )

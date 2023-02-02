@@ -99,7 +99,6 @@ const handleClick = async (e) => {
         
         <div className="container p-4 mx-auto">
             <div className="flex flex-col w-full px-0 mx-auto md:flex-row">
-            {user?.address === 0 ?  (
           <div className="flex flex-col md:w-full">
           <h2 className="mb-4 font-bold md:text-xl text-heading ">Shipping Address
           </h2>
@@ -156,33 +155,6 @@ const handleClick = async (e) => {
               </div>
           </form>
       </div>
-        ) : (
-          <div className="">
-          {user?.address.map((addr)=> {
-          return addr.map((add) => (
-          <div className="" key={add._id}>
-             <p>
-                  <span className="font-semibold">City :</span>{" "}
-                  {add.city}{" "}
-                </p>
-                <p>
-                  <span className="font-semibold">Number :</span>{" "}
-                  {add.number}
-                </p>
-                <p>
-                  <span className="font-semibold">Street :</span>{" "}
-                  {add.street}
-                </p>
-                <p>
-                  <span className="font-semibold">SubCounty :</span>{" "}
-                  {add.subcounty}
-                </p>
-          </div>
-          ))
-          }
-          )}
-          </div>
-        ) }
                 <div className="flex flex-col w-full ml-0 lg:ml-12 lg:w-2/5">
                     <div className="pt-12 md:pt-0 2xl:ps-4">
                         <h2 className="text-xl font-bold">Order Summary
@@ -240,8 +212,7 @@ const handleClick = async (e) => {
                             className="flex items-center w-full py-4 text-sm font-semibold border-b border-gray-300 lg:py-5 lg:px-3 text-heading last:border-b-0 last:text-base last:pb-0">
                             Total<span className="ml-2">${cart.total}</span></div>
                     </div>
-                     
-                     
+
                     <form>
                     <div className="">
                      <label className="flex items-center gap-2"> 

@@ -94,6 +94,9 @@ const confirmPayment = async () => {
 
   return (
     <div className="flex flex-col items-center  mt-[50px]">
+      <div>
+        
+      </div>
       <h2 className="font-semibold text-xl text-[#40AA54]">Pay with Mpesa</h2>
         <div className="mt-4">
           <div className="w-[300px]">
