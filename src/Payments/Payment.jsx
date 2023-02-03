@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { BASE_URL } from "../config/config";
+import dateFormat from "dateformat";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 
@@ -11,6 +12,7 @@ const Payment = () => {
   const user = useSelector((state) => state?.user.user);
   let orderId;
   let amount;
+   let date;
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -31,6 +33,7 @@ const Payment = () => {
     if (order.isComplete === false) {
       orderId = order.orderId;
       amount = order.amount;
+      date = order.date
     }
   });
   const postPayment = async () => {
@@ -89,10 +92,18 @@ const Payment = () => {
 
   return (
     <div className="flex flex-col items-center  mt-[50px]">
-      <div>
-        <p className="text-center">pay for products with orderId: <span className="text-[#40AA54]">{orderId}</span>. the amount to be paid is <span className="text-[#40AA54]">${amount}</span></p>
+      <div className="grid grid-cols-2 lg:grid-cols-3 text-center border border-[#40AA54] p-4 mb-2">
+       <p className="flex flex-col">
+        OrderNumber:<span className="text-[#40AA54] font-semibold">{orderId}</span>
+       </p>
+       <p className="flex flex-col">
+        Date: <span className="text-[#40AA54] font-semibold">{dateFormat(date, "mmmm dS, yyyy")}</span>
+       </p>
+       <p className="flex flex-col">
+        Total: <span className="text-[#40AA54] font-semibold">${amount}</span>
+       </p>
       </div>
-      <h2 className="font-semibold text-xl text-[#40AA54]">Pay with Mpesa</h2>
+      <h2 className="font-semibold text-xl text-[#40AA54] ">Pay with Mpesa</h2>
       <div className="mt-4">
         <div className="w-[300px]">
           <p className="text-center">write your mpesa number starting with 2547...</p>
