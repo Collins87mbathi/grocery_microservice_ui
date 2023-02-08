@@ -75,7 +75,7 @@ const OrdersUser = () => {
                   </span>
                 </p>
                 <ul className="-my-6 divide-y mt-1 divide-gray-200">
-                  {order.products.map((prod) =>
+                  {order?.products?.map((prod) =>
                     prod.map((prods) => (
                       <li key={prods._id} className="flex py-6">
                         <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
