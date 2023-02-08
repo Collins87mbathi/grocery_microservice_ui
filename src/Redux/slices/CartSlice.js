@@ -15,7 +15,7 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart(state, action) {
-      const existingIndex = state.cartItems.findIndex(
+      const existingIndex = state?.cartItems.findIndex(
         (item) => item._id === action.payload._id
       );
 
@@ -31,7 +31,7 @@ const cartSlice = createSlice({
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
     decreaseCart(state, action) {
-      const itemIndex = state.cartItems.findIndex(
+      const itemIndex = state?.cartItems.findIndex(
         (item) => item._id === action.payload._id
       );
 
