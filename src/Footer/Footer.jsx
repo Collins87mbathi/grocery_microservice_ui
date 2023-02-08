@@ -33,7 +33,7 @@ const Footer = () => {
           <h2 className="text-[18px] font-semibold">Contact</h2>
           <p className="text-gray-500">+254791686851</p>
           <p className="text-gray-500">Nairobi,Kenya</p>
-          <p className="text-gray-500">perezcollins87@gmail.com</p>
+          <p className="text-gray-500">collinsmbathi@gmail.com</p>
           <p className="text-gray-500">&#169; All right and reserved</p>
         </div>
       </div>

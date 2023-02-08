@@ -17,7 +17,7 @@ const OrdersUser = () => {
         const response = await axios.get(BASE_URL + "/orders/single", {
           headers: { authorization: `Bearer ${user.token}` },
         });
-        setOrders(response.data);
+        setOrders(response.data); 
       } catch (error) {
         console.log(error);
       }
