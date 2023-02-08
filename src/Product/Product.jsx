@@ -6,6 +6,7 @@ import {toast} from "react-toastify";
 
 const Product = ({ product }) => {
   // eslint-disable-next-line no-unused-vars
+  const dispatch = useDispatch();
   const handleClick = (product) => {
     dispatch(addToCart(product));
     toast.success("Product added to cart", {
@@ -13,7 +14,6 @@ const Product = ({ product }) => {
     });
   };
  
-  const dispatch = useDispatch();
   const { img, title, price, size } = product;
   return (
     <div className="border shadow-lg rounded-lg hover:scale-105 duration-300">
