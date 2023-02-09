@@ -32,14 +32,14 @@ const cartSlice = createSlice({
     },
     decreaseCart(state, action) {
       const itemIndex = state.cartItems.findIndex(
-        (item) => item._id === action.payload._id
+        (item) => item._id === action.payload.id
       );
 
       if (state.cartItems[itemIndex].cartQuantity > 1) {
         state.cartItems[itemIndex].cartQuantity -= 1;
       } else if (state.cartItems[itemIndex].cartQuantity === 1) {
         const nextCartItems = state.cartItems.filter(
-          (item) => item._id !== action.payload_.id
+          (item) => item._id !== action.payload.id
         );
 
         state.cartItems = nextCartItems;
